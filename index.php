@@ -1,110 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
-	<title>Tienda de Camisetas</title>
-</head>
-<body>
+<?php
 
-	<div id="container">
+	require_once 'autoload.php';
 
-		<header id="header">
-			<div id="logo">
-				<img src="assets/img/CamisetaRojaTrans.png" alt="camiseta logo">
-				<a href="index.php">Tienda de Camisetas</a>
-			</div>
-		</header>
+	require_once 'views/layouts/header.php';
+	require_once 'views/layouts/sidebar.php';
 
-		<nav id="menu">
-			<ul>
-				<li>
-					<a href="">Inicio</a>
-				</li>
-				<li>
-					<a href="">Categoria 1</a>
-				</li>
-				<li>
-					<a href="">Categoria 2</a>
-				</li>
-				<li>
-					<a href="">Categoria 3</a>
-				</li>
-				<li>
-					<a href="">Categoria 4</a>
-				</li>
-				<li>
-					<a href="">Categoria 5</a>
-				</li>
-			</ul>
-		</nav>
+	if(isset($_GET['controller']))
+	{
+		$nombre_controlador = $_GET['controller'].'Controller';
+	} 
+	else
+	{
+		echo 'La pagina no existe';
+		exit();
+	}
 
-		<div id="content">
+	if(class_exists($nombre_controlador))
+	{
+		$controlador = new $nombre_controlador();
 
-			<aside id="lateral">
+		if(isset($_GET['accion']) && method_exists($controlador, $_GET['accion']))
+		{
+			$action = $_GET['accion'];
+			$controlador->$action();
+		}
+		else
+		{
+			echo 'La pagina no existe';
+		}
+	}
+	else
+	{
+		echo 'La pagina no existe';
+	}
 
-				<div id="login" class="block_aside">
-					<h3>Entrar a la web</h3>
-					<form action="" method="post">
-						<label for="email">Email</label>
-						<input type="email" name="email">
-						<label for="password">Contrasena</label>
-						<input type="password" name="password">
-
-						<input type="submit" value="Enviar">
-					</form>
-					
-					<ul>
-						<li>
-							<a href="">Mis pedidos</a>
-						</li>
-						<li>
-							<a href="">Gestionar pedidos</a>
-						</li>
-						<li>
-							<a href="">Gestionar categorias</a>
-						</li>
-					</ul>					
-
-				</div>
-				
-			</aside>
-
-			<div id="central">
-
-				<div class="product">
-					<img src="./assets/img/CamisetaRojaTrans.png">
-					<h2>Camiseta roja Ancha</h2>
-					<p>$900</p>
-					<a href="">Comprar</a>
-				</div>
-
-				<div class="product">
-					<img src="./assets/img/CamisetaRojaTrans.png">
-					<h2>Camiseta roja Ancha</h2>
-					<p>$900</p>
-					<a href="">Comprar</a>
-				</div>
-
-				<div class="product">
-					<img src="./assets/img/CamisetaRojaTrans.png">
-					<h2>Camiseta roja Ancha</h2>
-					<p>$900</p>
-					<a href="">Comprar</a>
-				</div>
-
-			</div>
-
-		</div>
-
-		<footer id="footer">
-
-			<p>Desarrollado por Fernando Bontá &copy; <?=Date('Y')?></p>
-
-		</footer>
-
-	</div>
-		
-</body>
-</html>
+	require_once 'views/layouts/footer.php';

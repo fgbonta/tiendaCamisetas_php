@@ -1,7 +1,7 @@
 * {
 	padding: 0;
 	margin: 0;
-	font-family: sans-serif,Helvetica,Arial;
+	font-family: sans-serif,Helvetica,Arial;	
 }
 
 body {
@@ -108,11 +108,11 @@ a:hover {
 }
 
 #lateral {
-	width: 30%;
+	width: 23%;
 	float:left;
 	margin-top: 20px;
 	margin-left: 10px;	
-	min-height: 450px;
+	min-height: 470px;
 }
 
 #lateral .block_aside {
@@ -179,7 +179,7 @@ input[type="email"]:focus {
 
 input[type="button"],
 input[type="submit"],
-button {
+button, .button {
 	display: block;
 	border-radius: 2px;
 	width: auto;
@@ -192,6 +192,12 @@ button {
 	cursor: pointer;	
 }
 
+.button {
+	background-color: #33AE3D;
+	color: white !important;
+	text-decoration: none;
+}
+
 label,
 input[type="button"],
 input[type="submit"],
@@ -199,6 +205,56 @@ button {
 	margin-top: 10px;
 }
 
+#central {
+	width: 69%;
+	min-height: 470px;
+	float: right;
+	border-left: 1px solid #ccc;
+	box-shadow: -5px -1px 5px #ddd;
+	padding: 25px;
+}
+
+#central h1 {
+	font-size: 24px;
+	font-weight: normal;
+	letter-spacing: 1px;	
+	text-align: center;
+	border-bottom: 1px solid #ccc;	
+	margin-bottom: 20px;
+	padding: 20px;
+	padding-top: 0px;
+}
+
+.product {
+	width: 29%;	
+	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+	text-align: center;
+}
+
 .product img {
 	width: 100px;
+	margin-bottom: 10px;
+}
+
+.product h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.product p {
+	font-weight: bold;
+	color: #555;	
+	margin-bottom: 10px;
+}
+
+footer {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: white;
+	background-color: #222222;
+	border-top: 5px solid #01B1EA;
+	clear: both;
 }
