@@ -1,17 +1,32 @@
 <?php
 
-	require_once 'autoload.php';
+	ini_set('display_errors',1);
 
+	session_start();
+
+	require_once 'autoload.php';
+	require_once 'config/db.php';
+	require_once 'config/parameters.php';
 	require_once 'views/layouts/header.php';
 	require_once 'views/layouts/sidebar.php';
+
+	function show_error()
+	{
+		$error = new ErrorController();
+		$error->index();
+	}
 
 	if(isset($_GET['controller']))
 	{
 		$nombre_controlador = $_GET['controller'].'Controller';
+	}
+	elseif(!isset($_GET['controller']) && !isset($_GET['accion']))
+	{
+		$nombre_controlador = controller_default;
 	} 
 	else
-	{
-		echo 'La pagina no existe';
+	{		
+		show_error();
 		exit();
 	}
 
@@ -24,14 +39,19 @@
 			$action = $_GET['accion'];
 			$controlador->$action();
 		}
+		elseif(!isset($_GET['controller']) && !isset($_GET['accion']))
+		{
+			$action = action_default;
+			$controlador->$action();
+		} 
 		else
 		{
-			echo 'La pagina no existe';
+			show_error();
 		}
 	}
 	else
 	{
-		echo 'La pagina no existe';
+		show_error();
 	}
 
 	require_once 'views/layouts/footer.php';
