@@ -9,7 +9,7 @@
 	endif;
 ?>
 
-<form action="<?=base_url?>index.php?controller=Usuario&accion=save" method="post">
+<form action="<?=base_url?>Usuario/save" method="post">
 
 	<label for="nombre">Nombre</label>
 	<input type="text" name="nombre">

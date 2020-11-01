@@ -46,7 +46,7 @@
 				$_SESSION['register'] = "failed";
 			}
 
-			header('Location:'.base_url.'index.php?controller=Usuario&accion=registro');
+			header('Location:'.base_url.'Usuario/registro');
 		}
 
 	}

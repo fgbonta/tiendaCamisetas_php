@@ -6,8 +6,6 @@
 	RewriteCond %{SCRIPT_FILENAME} !-d
 	RewriteCond %{SCRIPT_FILENAME} !-f
 
-	RewriteBase http://localhost/master_php/index.php
-
 	RewriteRule ^(.*)/(.*) index.php?controller=$1&accion=$2
 
 </IfModule>	
