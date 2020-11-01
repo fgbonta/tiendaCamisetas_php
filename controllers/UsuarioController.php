@@ -24,7 +24,36 @@
 				$email = isset($_POST['email'])? $_POST['email'] : false;
 				$password = isset($_POST['password'])? $_POST['password'] : false;
 
+				$nombre = trim($nombre);
+				$apellidos = trim($apellidos);
+				$email = trim($email);
+
+				if(empty($nombre))
+				{
+					$nombre=false;
+				}
+
+				if(empty($apellidos))
+				{
+					$apellidos=false;
+				}				
+
+				if(!is_string($nombre) || preg_match("/[0-9]+/", $nombre))
+				{
+					$nombre = false;
+				}
+
+				if(!is_string($apellidos) || preg_match("/[0-9]+/", $apellidos))
+				{
+					$apellidos = false;
+				}
+
 				$email = filter_var($email,FILTER_VALIDATE_EMAIL);
+
+				if(	strlen($password) < 8)
+				{
+					$password = false;
+				}
 
 				if($nombre && $apellidos && $email && $password)
 				{

@@ -16,10 +16,10 @@
 <form action="<?=base_url?>Usuario/save" method="post">
 
 	<label for="nombre">Nombre</label>
-	<input type="text" name="nombre" pattern="[A-Za-Z]+" required>
+	<input type="text" name="nombre" pattern="[A-Za-z ]+" required>
 
 	<label for="apellidos">Apelidos</label>
-	<input type="text" name="apellidos" pattern="[A-Za-z]+" required>
+	<input type="text" name="apellidos" pattern="[A-Za-z ]+" required>
 
 	<label for="email">Email</label>
 	<input type="email" name="email" required>
