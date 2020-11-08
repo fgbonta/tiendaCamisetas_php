@@ -94,6 +94,66 @@
 			header('Location:'.base_url.'Usuario/registro');
 		}
 
+		public function login()
+		{
+			if( $_SERVER['REQUEST_METHOD'] == 'POST' )
+			{
+				
+				$email= isset($_POST['email'])? $_POST['email'] : false;
+				$email= trim($email);
+				$email = filter_var($email,FILTER_VALIDATE_EMAIL);
+
+				$password = isset($_POST['password'])? $_POST['password'] : false;				
+				if( strlen($password) < 8 )
+				{
+					$password = false;
+				}						
+
+				if($email && $password)
+				{
+					$usuario = new Usuario();
+
+					$usuario->setEmail($email);
+					$identity = $usuario->login($password);
+
+					if($identity && is_object($identity))
+			    	{
+			    		$_SESSION['identity'] = $identity;
+
+			    		if($identity->rol == 'admin')
+			    		{
+			    			$_SESSION['admin'] = true;
+			    		}
+
+			    	}
+			    	else
+			    	{
+			    		$_SESSION['error_login'] ="Identificación fallida";
+			    	}
+				}
+				else
+				{
+					$_SESSION['error_login'] ="Identificación fallida";
+				}				
+
+			}
+			else
+			{
+				$_SESSION['error_login'] ="Identificación fallida";
+			}
+
+			header('Location:'.base_url);
+
+		}
+
+		public function logout()
+		{
+			Utils::deleteSession('identity');
+			Utils::deleteSession('admin');
+
+			header('Location:'.base_url);
+		}
+
 	}
 
 ?>

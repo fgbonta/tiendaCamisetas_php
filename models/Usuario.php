@@ -107,6 +107,29 @@
 	    	return $result;
 	    }
 
+	    public function login($pass)
+	    {
+	    	$result = false;
+
+	    	$sql = "SELECT * FROM usuarios WHERE email = '{$this->getEmail()}'";
+	    	$login = $this->db->query($sql);	    	
+
+	    	if($login && $login->num_rows == 1)
+	    	{
+	    		$usuario = $login->fetch_object();
+	    		
+	    		$verify = password_verify($pass, $usuario->password);
+	    		if($verify)
+	    		{
+	    			$result = $usuario;
+	    		}
+
+	    	}
+
+	    	return $result;
+
+	    }
+
 	}
 
 ?>
