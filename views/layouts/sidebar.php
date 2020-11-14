@@ -17,6 +17,7 @@
 
 					<input type="submit" value="Enviar">
 				</form>
+
 				<?php else: ?>
 				<h3><?=$_SESSION['identity']->nombre?> <?=$_SESSION['identity']->apellidos?></h3>	
 				<?php endif; ?>
@@ -25,7 +26,7 @@
 					
 					<?php if(isset($_SESSION['admin'])): ?>
 					<li>
-						<a href="">Gestionar categorias</a>
+						<a href="<?=base_url?>Categoria/index">Gestionar categorias</a>
 					</li>
 					<li>
 						<a href="">Gestionar productos</a>
@@ -41,6 +42,12 @@
 					<li>
 						<a href="<?=base_url?>Usuario/logout">Cerrar sesión</a>
 					</li>
+					<?php else: ?>
+						<li>
+							<a href="<?=base_url?>Usuario/registro">
+								Registrate aquí
+							</a>
+						</li>
 					<?php endif; ?>
 				</ul>					
 
