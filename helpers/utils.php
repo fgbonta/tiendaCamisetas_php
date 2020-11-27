@@ -27,4 +27,12 @@
 				return true;
 			}
 		}
+
+		public static function showCategorias()
+		{
+			require_once 'models/Categoria.php';
+			$categoria = new Categoria();			
+			return $categoria->getAll();
+		} 
+
 	}

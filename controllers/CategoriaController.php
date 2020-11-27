@@ -49,6 +49,10 @@
 						$_SESSION['register'] = "failed";
 					}
 				}
+				else
+				{
+					$_SESSION['register'] = "failed";
+				}
 			}
 			else
 			{
@@ -60,5 +64,3 @@
 		}
 
 	}
-
-?>

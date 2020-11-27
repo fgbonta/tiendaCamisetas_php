@@ -95,7 +95,7 @@
 	    	$sql = "INSERT INTO usuarios VALUES (null,'{$this->getNombre()}',
 	    	'{$this->getApellidos()}','{$this->getEmail()}','{$this->getPassword()}','user',null)";	
 
-	    	$save = $this->db->query($sql);
+	    	$save = $this->db->query($sql);	    	
 
 	    	$result = false;
 
@@ -131,5 +131,3 @@
 	    }
 
 	}
-
-?>

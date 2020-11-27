@@ -39,7 +39,7 @@
 	    {
 	    	$sql = "INSERT INTO categorias VALUES (null,'{$this->getNombre()}')";	
 
-	    	$save = $this->db->query($sql);
+	    	$save = $this->db->query($sql);	    	
 
 	    	$result = false;
 
@@ -52,5 +52,3 @@
 	    }
 
 	}
-
-?>

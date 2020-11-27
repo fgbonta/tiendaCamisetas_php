@@ -29,7 +29,7 @@
 						<a href="<?=base_url?>Categoria/index">Gestionar categorias</a>
 					</li>
 					<li>
-						<a href="">Gestionar productos</a>
+						<a href="<?=base_url?>Producto/gestion">Gestionar productos</a>
 					</li>
 					<li>
 						<a href="">Gestionar pedidos</a>

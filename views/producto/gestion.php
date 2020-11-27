@@ -1,4 +1,4 @@
-<h1>Gestionar Categorias</h1>
+<h1>Gestión de productos</h1>
 
 <?php if(isset($_SESSION['register'])): ?>
 	
@@ -14,19 +14,23 @@
 
 <?php endif; ?>
 
-<a href="<?=base_url?>Categoria/crear" class="button button-small">
-	Crear categoria
+<a href="<?=base_url?>Producto/crear" class="button button-small">
+	Crear producto
 </a>
 
 <table>
 	<tr>
 		<th>ID</th>
 		<th>NOMBRE</th>
+		<th>PRECIO</th>
+		<th>STOCK</th>
 	</tr>
-<?php while($cat = $categorias->fetch_object()): ?>
+<?php while($pro = $productos->fetch_object()): ?>
 	<tr>
-		<td><?=$cat->id?></td>
-		<td><?=$cat->nombre?></td>
+		<td><?=$pro->id?></td>
+		<td><?=$pro->nombre?></td>
+		<td><?=$pro->precio?></td>
+		<td><?=$pro->stock?></td>
 	</tr>
 <?php endwhile; ?>
 </table> 
