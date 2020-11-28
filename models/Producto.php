@@ -112,8 +112,14 @@
 	    }
 
 	    public function save()
-	    {
-	    	$sql = "INSERT INTO productos VALUES (null,{$this->getCategoriaId()},'{$this->getNombre()}','{$this->getDescripcion()}',{$this->getPrecio()},{$this->getStock()},'{$this->getOferta()}',CURDATE(),'noDisponible.jpg')";
+	    {	
+	    	
+	    	if(empty($this->getImagen()))
+	    	{
+	    		$this->setImagen('noDisponible.jpg');
+	    	}	    	
+
+	    	$sql = "INSERT INTO productos VALUES (null,{$this->getCategoriaId()},'{$this->getNombre()}','{$this->getDescripcion()}',{$this->getPrecio()},{$this->getStock()},'{$this->getOferta()}',CURDATE(),'{$this->getImagen()}')";
 
 	    	$save = $this->db->query($sql);	    	
 

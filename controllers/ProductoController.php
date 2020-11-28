@@ -56,7 +56,9 @@
 				if(!is_numeric($categoria))
 				{
 					$categoria = false;
-				}			
+				}
+
+				$file = isset($_FILES['image'])? $_FILES['image'] : false;				
 				
 				if($nombre && $descripcion && $precio>=0 && $stock>=0 && $categoria)
 				{
@@ -68,6 +70,24 @@
 					$producto->setStock($stock);
 					$producto->setCategoriaId($categoria);
 					$producto->setOferta('no');
+
+					if($file)
+					{
+						$fileName = $file['name'];
+						$mimeType = $file['type'];
+
+						if( $mimeType == "image/gif" || $mimeType == "image/png" || $mimeType == "image/jpeg" || $mimeType == "image/bmp" || $mimeType == "image/webp")
+						{
+							if(!is_dir('uploads/images'))
+							{
+								mkdir('uploads/images',0777,true);								
+							}
+
+							move_uploaded_file($file['tmp_name'], 'uploads/images/'.$fileName);
+
+							$producto->setImagen($fileName);						
+						}
+					}					
 
 					$save = $producto->save();
 
@@ -92,6 +112,16 @@
 			}
 
 			header('Location:'.base_url.'Producto/gestion');
+		}
+
+		public function editar()
+		{
+			var_dump($_GET);
+		}
+
+		public function eliminar()
+		{
+			var_dump($_GET);
 		}
 
 	}
