@@ -35,4 +35,16 @@
 			return $categoria->getAll();
 		} 
 
+		public static function createSession($name,$subname,$data)
+		{
+			if(!isset($_SESSION[$name]))
+			{
+				$_SESSION[$name] = array($subname=>$data);
+				return true;				
+			}
+
+			return false;
+			
+		}
+
 	}

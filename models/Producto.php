@@ -21,7 +21,12 @@
 	    public function getId()
 	    {
 	        return $this->id;
-	    }	    
+	    }
+
+	    public function setId($id)
+	    {
+	        $this->id = $id;
+	    }
 	   
 	    public function getCategoriaId()
 	    {
@@ -101,7 +106,7 @@
 	   
 	    public function setImagen($imagen)
 	    {
-	        $this->imagen = $imagen;	        
+	        $this->imagen = $this->db->real_escape_string($imagen);	        
 	    }
 
 	    public function getAll()
@@ -109,6 +114,13 @@
 	    	$sql = "SELECT * FROM productos ORDER BY id DESC";
 	    	$productos = $this->db->query($sql);
 	    	return $productos;
+	    }
+
+	    public function getOne()
+	    {
+	    	$sql = "SELECT * FROM productos WHERE id = {$this->getId()}";
+	    	$producto = $this->db->query($sql);
+	    	return $producto->fetch_object();//para que sea un object usable
 	    }
 
 	    public function save()
@@ -126,6 +138,52 @@
 	    	$result = false;
 
 	    	if($save)
+	    	{
+	    		$result = true;
+	    	}
+
+	    	return $result;
+	    }
+
+	    public function edit()
+	    {	    	
+
+	    	$sql = "UPDATE productos SET ";
+	    	$sql .= "categoria_id = {$this->getCategoriaId()}";
+	    	$sql .= ",nombre = '{$this->getNombre()}'";
+	    	$sql .= ",descripcion = '{$this->getDescripcion()}'";
+	    	$sql .= ",precio = {$this->getPrecio()}";
+	    	$sql .= ",stock = {$this->getStock()}";
+	    	$sql .= ",oferta = '{$this->getOferta()}'";
+	    	
+	    	if(!empty($this->getImagen()))
+	    	{
+	    		$sql .= ",imagen = '{$this->getImagen()}'";
+	    	}
+
+	    	$sql .= " WHERE id = {$this->getId()}";	    	
+
+	    	$save = $this->db->query($sql);	    	
+
+	    	$result = false;
+
+	    	if($save)
+	    	{
+	    		$result = true;
+	    	}
+
+	    	return $result;
+	    }
+
+	    public function delete()
+	    {
+	    	$sql = "DELETE FROM productos WHERE id = {$this->getId()}";
+
+	    	$delete = $this->db->query($sql);
+
+	    	$result = false;
+
+	    	if($delete)
 	    	{
 	    		$result = true;
 	    	}

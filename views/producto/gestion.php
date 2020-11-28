@@ -5,16 +5,39 @@
 </a>
 
 <?php if(isset($_SESSION['register'])): ?>
+	<?php if(isset($_SESSION['register']['create'])): ?>
+		<?php if($_SESSION['register']['create']=='complete'): ?>
+		<strong class="alert_green">El producto se ha creado correctamente</strong>
+		<?php endif; ?>
+
+		<?php if($_SESSION['register']['create']=='failed'): ?>
+		<strong class="alert_red">El producto NO se ha creado correctamente</strong>
+		<?php endif; ?>
+	<?php endif; ?>
+
+	<?php if(isset($_SESSION['register']['edit'])): ?>
+		<?php if($_SESSION['register']['edit']=='complete'): ?>
+		<strong class="alert_green">El producto se ha modificado correctamente</strong>
+		<?php endif; ?>
+
+		<?php if($_SESSION['register']['edit']=='failed'): ?>
+		<strong class="alert_red">El producto NO se ha modificado correctamente</strong>
+		<?php endif; ?>
+	<?php endif; ?>
+	<?php Utils::deleteSession('register'); ?>
+<?php endif; ?>
+
+<?php if(isset($_SESSION['delete'])): ?>
 	
-<?php if($_SESSION['register']=='complete'): ?>
-<strong class="alert_green">El producto se ha creado correctamente</strong>
-<?php endif; ?>
+	<?php if($_SESSION['delete']=='complete'): ?>
+	<strong class="alert_green">El producto se ha borrado correctamente</strong>
+	<?php endif; ?>
 
-<?php if($_SESSION['register']=='failed'): ?>
-<strong class="alert_red">El producto NO se ha creado correctamente</strong>
-<?php endif; ?>
+	<?php if($_SESSION['delete']=='failed'): ?>
+	<strong class="alert_red">El producto NO se ha borrado correctamente</strong>
+	<?php endif; ?>
 
-<?php Utils::deleteSession('register'); ?>
+	<?php Utils::deleteSession('delete'); ?>
 
 <?php endif; ?>
 

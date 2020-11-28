@@ -35,8 +35,8 @@
 				$precio = isset($_POST['precio'])? $_POST['precio'] : false;
 				$stock = isset($_POST['stock'])? $_POST['stock'] : false;
 				$categoria = isset($_POST['categoria'])? $_POST['categoria'] : false;
-				//$image = isset($_FILES['image'])? $_FILES['image'] : false;
-				
+				$file = isset($_FILES['image'])? $_FILES['image'] : false;
+								
 				$nombre = trim($nombre);
 				if(empty($nombre)) $nombre = false;
 
@@ -56,9 +56,7 @@
 				if(!is_numeric($categoria))
 				{
 					$categoria = false;
-				}
-
-				$file = isset($_FILES['image'])? $_FILES['image'] : false;				
+				}								
 				
 				if($nombre && $descripcion && $precio>=0 && $stock>=0 && $categoria)
 				{
@@ -89,39 +87,131 @@
 						}
 					}					
 
-					$save = $producto->save();
-
-					if($save)
+					if( isset($_POST['id']) && is_numeric($_POST['id']))
 					{
-						$_SESSION['register'] = "complete";
+						$id = $_POST['id'];
+						$producto->setId($id);
+						$save = $producto->edit();
 					}
 					else
 					{
-						$_SESSION['register'] = "failed";
+						$save = $producto->save();
+					}					
+
+					if($save)
+					{
+						if( isset($_POST['id']) && is_numeric($_POST['id']))
+							Utils::createSession('register','edit','complete');
+						else
+							Utils::createSession('register','create','complete');
+					}
+					else
+					{
+						if( isset($_POST['id']) && is_numeric($_POST['id']))
+							Utils::createSession('register','edit','failed');
+						else
+							Utils::createSession('register','create','failed');
 					}
 
 				}
 				else
 				{
-					$_SESSION['register'] = "failed";
+					if( isset($_POST['id']) && is_numeric($_POST['id']))
+						Utils::createSession('register','edit','failed');
+					else
+						Utils::createSession('register','create','failed');
 				}
 			}
-			else
-			{
-				$_SESSION['register'] = "failed";
-			}
-
+			
 			header('Location:'.base_url.'Producto/gestion');
 		}
 
 		public function editar()
-		{
-			var_dump($_GET);
+		{	
+			Utils::isAdmin();
+
+			if($_SERVER['REQUEST_METHOD']=='GET')
+			{
+				$id = isset($_GET['id'])? $_GET['id'] : false;
+
+				if(empty($id))
+				{
+					$id = false;
+				}
+
+				if(!is_numeric($id))
+				{
+					$id = false;
+				}
+
+				if($id)
+				{
+					//$edit = true;
+					$producto = new Producto();
+					$producto->setId($id);
+					$dataPro = $producto->getOne();	
+
+					require_once "views/producto/crear.php";
+				}
+				else
+				{
+					header('Location:'.base_url.'Producto/gestion');
+				}
+			}
+			else
+			{
+				header('Location:'.base_url.'Producto/gestion');
+			}			
 		}
 
 		public function eliminar()
 		{
-			var_dump($_GET);
+			Utils::isAdmin();
+
+			if($_SERVER['REQUEST_METHOD']=='GET')
+			{
+				$id = isset($_GET['id'])? $_GET['id'] : false;
+
+				if(empty($id))
+				{
+					$id = false;
+				}
+
+				if(!is_numeric($id))
+				{
+					$id = false;
+				}
+
+				if($id)
+				{
+					$producto = new Producto();
+					$producto->setId($id);
+					
+					$delete = $producto->delete();
+
+					if($delete)
+					{
+						$_SESSION['delete'] = "complete";
+					}
+					else
+					{
+						$_SESSION['delete'] = "failed";
+					}
+
+				}
+				else
+				{
+					$_SESSION['delete'] = "failed";
+				}	
+
+			}
+			else
+			{
+				$_SESSION['delete'] = "failed";
+			}
+
+			header('Location:'.base_url.'Producto/gestion');
+			
 		}
 
 	}
