@@ -116,6 +116,16 @@
 	    	return $productos;
 	    }
 
+	    public function getAllCategory()
+	    {
+	    	$sql = "SELECT p.*,c.nombre as catNombre FROM productos p"
+	    		." INNER JOIN categorias c ON c.id = p.categoria_id"
+	    		." WHERE categoria_id = {$this->getCategoriaId()}"
+	    		." ORDER BY p.id DESC";	    		
+	    	$productos = $this->db->query($sql);
+	    	return $productos;
+	    }
+
 	    public function getRandom($limit)
 	    {
 	    	$sql = "SELECT * FROM productos ORDER BY RAND() LIMIT $limit";

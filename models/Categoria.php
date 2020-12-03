@@ -15,7 +15,12 @@
 	    public function getId()
 	    {
 	        return $this->id;
-	    }	   
+	    }
+
+	    public function setId($id)
+	    {
+	        $this->id = $id;
+	    }		   
 
 	    public function getNombre()
 	    {
@@ -33,6 +38,14 @@
 	    	$categorias = $this->db->query($sql);	    	
 	    		
 	    	return $categorias;
+	    }
+
+	     public function getOne()
+	    {
+	    	$sql = "SELECT * FROM categorias WHERE id = {$this->id}";
+	    	$categoria = $this->db->query($sql);	    	
+	    		
+	    	return $categoria->fetch_object();
 	    }
 
 	    public function save()

@@ -1,6 +1,7 @@
 <?php
 
 	require_once 'models/Categoria.php';
+	require_once 'models/Producto.php';
 
 	class CategoriaController {
 
@@ -11,6 +12,24 @@
 			$categorias = $categoria->getAll();
 
 			require_once 'views/categoria/index.php';
+		}
+
+		public function ver()
+		{	
+			if(isset($_GET['id']))
+			{	
+				//conseguir la categoria			
+				$id = $_GET['id'];
+				$categoria = new Categoria();
+				$categoria->setId($id);
+				$categoria = $categoria->getOne();
+				//conseguir los productos de esa categoria
+				$productos = new Producto();
+				$productos->setCategoriaId($id);
+				$productos = $productos->getAllCategory();
+
+			}
+			require_once 'views/categoria/ver.php';
 		}
 
 		public function crear()
