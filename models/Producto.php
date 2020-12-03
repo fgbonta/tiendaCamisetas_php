@@ -116,6 +116,13 @@
 	    	return $productos;
 	    }
 
+	    public function getRandom($limit)
+	    {
+	    	$sql = "SELECT * FROM productos ORDER BY RAND() LIMIT $limit";
+	    	$productos = $this->db->query($sql);
+	    	return $productos;
+	    }
+
 	    public function getOne()
 	    {
 	    	$sql = "SELECT * FROM productos WHERE id = {$this->getId()}";

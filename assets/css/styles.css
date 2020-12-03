@@ -277,11 +277,12 @@ button {
 	float: left;
 	margin-right: 10px;
 	margin-left: 10px;
+	margin-bottom: 25px;
 	text-align: center;
 }
 
 .product img {
-	width: 100px;
+	height: 120px;
 	margin-bottom: 10px;
 }
 
