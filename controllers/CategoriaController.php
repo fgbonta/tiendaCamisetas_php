@@ -25,7 +25,7 @@
 
 			if( $_SERVER['REQUEST_METHOD'] == "POST" )
 			{
-				$nombre = isset($_POST['nombre'])? $_POST['nombre'] : false;
+				$nombre = isset($_POST['nombre'])? htmlspecialchars($_POST['nombre']) : false;
 
 				$nombre = trim($nombre);
 

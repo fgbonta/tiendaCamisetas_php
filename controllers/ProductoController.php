@@ -30,8 +30,8 @@
 			if( $_SERVER['REQUEST_METHOD'] == "POST" )
 			{					
 
-				$nombre = isset($_POST['nombre'])? $_POST['nombre'] : false;
-				$descripcion = isset($_POST['descripcion'])? $_POST['descripcion'] : false;
+				$nombre = isset($_POST['nombre'])? htmlspecialchars($_POST['nombre']) : false;
+				$descripcion = isset($_POST['descripcion'])? htmlspecialchars($_POST['descripcion']) : false;
 				$precio = isset($_POST['precio'])? $_POST['precio'] : false;
 				$stock = isset($_POST['stock'])? $_POST['stock'] : false;
 				$categoria = isset($_POST['categoria'])? $_POST['categoria'] : false;
