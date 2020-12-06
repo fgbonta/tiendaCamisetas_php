@@ -12,6 +12,41 @@
 			require_once 'views/producto/destacados.php';
 		}
 
+		public function ver()
+		{
+			if($_SERVER['REQUEST_METHOD']=='GET')
+			{
+				$id = isset($_GET['id'])? $_GET['id'] : false;
+
+				if(empty($id))
+				{
+					$id = false;
+				}
+
+				if(!is_numeric($id))
+				{
+					$id = false;
+				}
+
+				if($id)
+				{					
+					$producto = new Producto();
+					$producto->setId($id);
+					$pro = $producto->getOne();	
+
+					require_once "views/producto/ver.php";
+				}
+				else
+				{
+					header('Location:'.base_url);
+				}
+			}
+			else
+			{
+				header('Location:'.base_url);
+			}		
+		}
+
 		public function gestion()
 		{
 			Utils::isAdmin();

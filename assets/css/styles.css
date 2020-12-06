@@ -297,6 +297,52 @@ button {
 	margin-bottom: 10px;
 }
 
+.product a {
+	color: black;	
+	text-decoration: none;
+}
+
+.product a:hover {
+	color: #555;
+}
+
+#detail-product {
+	width: 100%;	
+}
+
+#detail-product .image {
+	display: block;
+	width: 47%;
+	float: left;
+	
+}
+
+#detail-product img {
+	display: block;
+	width: 100%;
+	float: left;	
+}
+
+#detail-product .data {	
+	width: 50%;
+	float: right;	
+}
+
+#detail-product .button {	
+	width: 200px;
+	text-align: center;
+}
+
+#detail-product .description {	
+	margin-bottom: 20px;	
+}
+
+#detail-product .price {	
+	margin-bottom: 10px;
+	font-size: 20px;
+	color: #444;	
+}
+
 footer {
 	text-align: center;
 	padding-top: 10px;

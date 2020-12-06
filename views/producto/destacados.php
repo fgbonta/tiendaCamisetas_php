@@ -4,8 +4,10 @@
 		<?php while($pro = $productos->fetch_object()): ?>
 
 		<div class="product">
-			<img src="<?=base_url?>uploads/images/<?=$pro->imagen?>">
-			<h2><?=$pro->nombre?></h2>
+			<a href="<?=base_url?>Producto/ver&id=<?=$pro->id?>">
+				<img src="<?=base_url?>uploads/images/<?=$pro->imagen?>">
+				<h2><?=$pro->nombre?></h2>
+			</a>
 			<p>$<?=$pro->precio?></p>
 			<a href="" class="button">Comprar</a>
 		</div>
