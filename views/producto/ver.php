@@ -8,7 +8,7 @@
 		<div class="data">
 			<p class="description"><?=$pro->descripcion?></p>
 			<p class="price">$ <?=$pro->precio?></p>
-			<a href="" class="button">Comprar</a>
+			<a href="<?=base_url?>Carrito/add&id=<?=$pro->id?>" class="button">Comprar</a>
 		</div>	
 		
 	</div>
