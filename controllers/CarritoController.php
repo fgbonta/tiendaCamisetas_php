@@ -6,7 +6,7 @@
 
 		public function index()
 		{	
-			$carrito = $_SESSION['carrito'];
+			$carrito = isset($_SESSION['carrito'])? $_SESSION['carrito'] : false;
 			require_once 'views/carrito/index.php';
 		}
 

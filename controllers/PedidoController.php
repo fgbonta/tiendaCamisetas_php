@@ -2,9 +2,14 @@
 
 	class PedidoController {
 
-		public function index()
+		public function hacer()
 		{
-			echo "Controlador Pedidos, Acción index";
+			require_once 'views/pedido/hacer.php';
+		}
+
+		public function add()
+		{
+			var_dump($_POST);
 		}
 
 	}
