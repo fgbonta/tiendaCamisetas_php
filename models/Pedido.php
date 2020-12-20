@@ -107,17 +107,7 @@
 	    public function setHora($hora)
 	    {
 	        $this->hora = $hora;	        
-	    }
-
-	    public function getDb()
-	    {
-	        return $this->db;
-	    }
-	   
-	    public function setDb($db)
-	    {
-	        $this->db = $db;	       
-	    }
+	    }	    
 
 	    public function getAll()
 	    {
