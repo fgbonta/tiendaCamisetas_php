@@ -63,12 +63,31 @@
 					$_SESSION['pedido'] = 'failed';
 				}
 				
+				header('Location:'.base_url.'Pedido/confirmado');				
+
 			}
 			else
 			{
 				header('Location:'.base_url);
 			}			
 
+		}
+
+		public function confirmado()
+		{
+			if(isset($_SESSION['identity']))
+			{
+				$identity = $_SESSION['identity'];
+
+				$pedido = new Pedido();
+				$pedido->setUsuarioId($identity->id);
+				$pedido = $pedido->getOneByUser();
+
+				$pedido_productos = new Pedido();
+				$productos = $pedido_productos->getProductosByPedido($pedido->id);
+			}
+
+			require_once 'views/pedido/confirmado.php';
 		}
 
 	}

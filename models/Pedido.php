@@ -133,6 +133,29 @@
 	    	return $producto->fetch_object();//para que sea un object usable
 	    }
 
+	    public function getOneByUser()
+	    {
+	    	$sql = "SELECT p.id,p.coste FROM pedidos AS p" 
+	    	//." INNER JOIN lineas_pedidos AS lp ON lp.pedido_id = p.id" 
+	    	." WHERE p.usuario_id = {$this->getUsuarioId()}" 
+	    	." ORDER BY p.id DESC LIMIT 1";
+
+	    	$pedidos = $this->db->query($sql)->fetch_object();
+	    	
+	    	return $pedidos;
+	    }
+
+	    public function getProductosByPedido($id)
+	    {
+	    	$sql = "SELECT p.*,lp.unidades FROM productos AS p"
+	    	." INNER JOIN lineas_pedidos AS lp ON lp.producto_id = p.id"
+	    	." WHERE lp.pedido_id = {$id}";
+
+	    	$productos = $this->db->query($sql);	    	
+	    	
+	    	return $productos;
+	    }
+
 	    public function save()
 	    {    		    	
 
