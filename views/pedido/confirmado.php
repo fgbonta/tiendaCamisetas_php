@@ -6,28 +6,28 @@
 </p>
 <br>
 
-<?php if($pedido): ?>
-<h3>Datos del pedido</h3>
-Número del pedido: <?=$pedido->id?><br>
-Total a pagar: <?=$pedido->coste?><br>
+<?php if(isset($pedido)): ?>
+	<h3>Datos del pedido</h3>
+	Número del pedido: <?=$pedido->id?><br>
+	Total a pagar: <?=$pedido->coste?><br>
 
-<table>
-<caption>Productos</caption>
-<tr>
-	<th>Imagen</th>
-	<th>Nombre</th>
-	<th>Precio</th>
-	<th>Unidades</th>
-</tr>
-<?php while( $pro = $productos->fetch_object() ): ?>
+	<table>
+	Productos:
 	<tr>
-		<td><img src="<?=base_url?>uploads/images/<?=$pro->imagen?>" class="img_carrito"></td>
-		<td><?=$pro->nombre?></td>
-		<td>$ <?=$pro->precio?></td>
-		<td><?=$pro->unidades?></td>
-	</tr>		
-<?php endwhile; ?>
-</table>	
+		<th>Imagen</th>
+		<th>Nombre</th>
+		<th>Precio</th>
+		<th>Unidades</th>
+	</tr>
+	<?php while( $pro = $productos->fetch_object() ): ?>
+		<tr>
+			<td><img src="<?=base_url?>uploads/images/<?=$pro->imagen?>" class="img_carrito"></td>
+			<td><?=$pro->nombre?></td>
+			<td>$ <?=$pro->precio?></td>
+			<td><?=$pro->unidades?></td>
+		</tr>		
+	<?php endwhile; ?>
+	</table>	
 <?php endif; ?>
 
 <?php elseif(isset($_SESSION['pedido']) && $_SESSION['pedido'] != 'complete'): ?>
