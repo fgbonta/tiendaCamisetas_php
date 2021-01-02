@@ -133,6 +133,17 @@
 	    	$pedidos = $this->db->query($sql)->fetch_object();
 	    	
 	    	return $pedidos;
+		}
+		
+		public function getAllByUser()
+	    {
+	    	$sql = "SELECT * FROM pedidos" 	    	
+	    	." WHERE usuario_id = {$this->getUsuarioId()}" 
+	    	." ORDER BY id DESC";
+
+	    	$pedidos = $this->db->query($sql);
+	    	
+	    	return $pedidos;
 	    }
 
 	    public function getProductosByPedido($id)
