@@ -4,7 +4,8 @@
 
 		<footer id="footer">
 
-			<p>Desarrollado por Fernando Bontá &copy; <?=Date('Y')?></p>
+			<p>Desarrollado por Fernando Bontá &copy; 2020</p>
+			<p>Sitio con fines didácticos</p>
 
 		</footer>
 
