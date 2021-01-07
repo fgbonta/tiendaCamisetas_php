@@ -33,3 +33,4 @@
 <?php elseif(isset($_SESSION['pedido']) && $_SESSION['pedido'] != 'complete'): ?>
 	<h1>Tu pedido NO se ha podido procesar</h1>
 <?php endif; ?>
+<?php Utils::deleteSession('pedido'); ?>
