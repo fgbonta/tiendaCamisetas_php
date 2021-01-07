@@ -101,4 +101,40 @@
 			require_once 'views/pedido/mis_pedidos.php';
 		}
 
+		public function detalle()
+		{
+			Utils::isIdentity();
+
+			if(isset($_GET['id']) && is_numeric($_GET['id']))
+			{
+				$id = $_GET['id'];
+
+				$pedido = new Pedido();
+				$pedido->setId($id);
+				$pedido = $pedido->getOne();
+
+				$productos = new Pedido();
+				$productos = $productos->getProductosByPedido($pedido->id);
+
+				require_once 'views/pedido/detalle.php';
+
+			}
+			else
+			{
+				header('Location:'.base_url.'Pedido/mis_pedidos');
+			}
+			
+		}
+
+		public function gestion()
+		{
+			Utils::isAdmin();
+			$gestion = true;
+
+			$pedido = new Pedido();
+			$pedidos = $pedido->getAll();
+
+			require_once 'views/pedido/mis_pedidos.php';
+		}
+
 	}
