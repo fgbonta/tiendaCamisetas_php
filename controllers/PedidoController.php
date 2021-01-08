@@ -137,4 +137,37 @@
 			require_once 'views/pedido/mis_pedidos.php';
 		}
 
+		public function estado()
+		{
+			Utils::isAdmin();
+			
+			if($_SERVER['REQUEST_METHOD'] == 'POST')
+			{
+				$estado = isset($_POST['estado'])? trim($_POST['estado']) : false;
+				if( empty(Utils::showStatus($estado)))
+				{
+					$estado = false;
+				}
+				$pedido_id = isset($_POST['pedido_id'])? $_POST['pedido_id'] : false;			
+				$pedido_id = filter_var($pedido_id,FILTER_VALIDATE_INT,array('min_range'=>1));
+
+				if($estado && $pedido_id)
+				{
+					$pedido = new Pedido();
+					$pedido->setId($pedido_id);
+					$pedido->setEstado($estado);					
+					$save = $pedido->edit();
+					header('Location:'.base_url.'Pedido/detalle&id='.$pedido_id);
+				}
+				else
+				{
+					header('Location:'.base_url);
+				}
+			}
+			else
+			{
+				header('Location:'.base_url);
+			}
+		}
+
 	}

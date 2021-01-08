@@ -86,7 +86,7 @@
 
 	    public function setEstado($estado)
 	    {
-	        $this->estado = $estado;	        
+	        $this->estado = $this->db->real_escape_string($estado);	        
 	    }
 	   
 	    public function getFecha()
@@ -201,5 +201,23 @@
 
 	    	return $result;
    		
-    	}
-}
+		}
+		
+		public function edit()
+		{
+			$sql = "UPDATE pedidos SET estado = '{$this->getEstado()}'"
+				." WHERE id = {$this->getId()}";
+
+			$save = $this->db->query($sql);
+
+			$result = false;
+
+			if($save)
+			{
+				$result = true;				
+			}
+
+			return $result;
+
+		}
+	}

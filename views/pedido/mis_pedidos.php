@@ -18,7 +18,7 @@
 			<td><a href="<?=base_url?>Pedido/detalle&id=<?=$ped->id?>"><?=$ped->id?></a></td>
 			<td>$ <?=$ped->coste?></td>
             <td><?=$ped->fecha?></td>
-			<td><?=$ped->estado?></td>
+			<td><?=Utils::showStatus($ped->estado)?></td>
 		</tr>		
 
 	<?php endwhile; ?>
