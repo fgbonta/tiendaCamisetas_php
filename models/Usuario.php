@@ -21,6 +21,11 @@
 	    public function getId()
 	    {
 	        return $this->id;
+		}
+		
+		public function setId($id)
+	    {
+	        $this->id = $id;
 	    }
 	   
 	    public function getNombre()
@@ -128,6 +133,18 @@
 
 	    	return $result;
 
-	    }
+		}
+		
+		public function getUserById()
+		{
+			$sql = "SELECT id,nombre,apellidos,email,rol,imagen"
+				." FROM usuarios"
+				." WHERE id = {$this->getId()}";
+
+			$usuario = $this->db->query($sql)->fetch_object();
+
+			return $usuario;
+						
+		}
 
 	}

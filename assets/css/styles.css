@@ -359,6 +359,24 @@ footer {
 	clear: both;
 }
 
+.delete-carrito {
+	width: 320px;
+	display: block;
+	float: left;
+}
+
+.button-delete {
+	display: block;
+	float: left; 	
+	width: 95px;
+}
+
+.button-carrito {		
+	width: 45px;
+	margin: 0 auto;
+	text-align: center;
+}
+
 .total-carrito {
 	width: 320px;
 	display: block;
@@ -375,4 +393,17 @@ footer {
 	display: block;
 	float: right; 	
 	width: 100px;
+}
+
+.updown-unidades {		
+	width: 80px;
+	margin: 0 auto;
+}
+
+.updown-unidades .button {		
+	width: 20px;
+	display: block;
+	float: left;
+	padding: 2px;
+	margin: 7px;
 }

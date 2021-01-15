@@ -9,7 +9,7 @@
 <?php if(isset($pedido)): ?>
 	<h3>Datos del pedido</h3>
 	Número del pedido: <?=$pedido->id?><br>
-	Total a pagar: <?=$pedido->coste?><br>
+	Total a pagar: $ <?=$pedido->coste?><br>
 
 	<table>
 	Productos:

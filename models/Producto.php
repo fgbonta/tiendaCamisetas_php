@@ -120,7 +120,8 @@
 	    {
 	    	$sql = "SELECT p.*,c.nombre as catNombre FROM productos p"
 	    		." INNER JOIN categorias c ON c.id = p.categoria_id"
-	    		." WHERE categoria_id = {$this->getCategoriaId()}"
+				." WHERE categoria_id = {$this->getCategoriaId()}"
+				." AND p.stock > 0"
 	    		." ORDER BY p.id DESC";	    		
 	    	$productos = $this->db->query($sql);
 	    	return $productos;
@@ -128,7 +129,9 @@
 
 	    public function getRandom($limit)
 	    {
-	    	$sql = "SELECT * FROM productos ORDER BY RAND() LIMIT $limit";
+			$sql = "SELECT * FROM productos"
+				." WHERE stock > 0"
+				." ORDER BY RAND() LIMIT $limit";
 	    	$productos = $this->db->query($sql);
 	    	return $productos;
 	    }
@@ -206,6 +209,23 @@
 	    	}
 
 	    	return $result;
-	    }	  
+		}
+		
+		public function downStock($unidades)
+	    {	    	
+	    	$sql = "UPDATE productos SET"	    	
+				." stock = stock-$unidades"
+				." WHERE id = {$this->getId()}";
+
+			$save = $this->db->query($sql);
+				   	
+	    	$result = false;
+	    	if($save)
+	    	{
+	    		$result = true;
+	    	}
+			return $result;
+			
+	    }
 	   
 	}

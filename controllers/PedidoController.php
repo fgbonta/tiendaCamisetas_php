@@ -1,6 +1,6 @@
 <?php
 
-	require_once 'models/Pedido.php';
+	require_once 'models/Pedido.php';	
 
 	class PedidoController {
 
@@ -51,6 +51,14 @@
 					if($save && $save_linea)
 					{
 						$_SESSION['pedido'] = 'complete';
+						require_once 'models/Producto.php';
+						foreach ($_SESSION['carrito'] as $clave => $valor) 
+						{
+							$producto = new Producto();
+							$producto->setID($valor['id_producto']);
+							$producto->downStock($valor['unidades']);							
+						}
+						unset($_SESSION['carrito']);
 					}
 					else
 					{
@@ -115,6 +123,11 @@
 
 				$productos = new Pedido();
 				$productos = $productos->getProductosByPedido($pedido->id);
+
+				require_once 'models/Usuario.php';
+				$usuario = new Usuario();
+				$usuario->setId($pedido->usuario_id);
+				$usuario = $usuario->getUserById();
 
 				require_once 'views/pedido/detalle.php';
 

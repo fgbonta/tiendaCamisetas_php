@@ -13,6 +13,10 @@
 			<input type="submit" value="Cambia estado">
 		</form>
 		<br>
+		<h3>Datos del usuario</h3>
+		Nombre: <?=$usuario->nombre?><br>
+		Apellido: <?=$usuario->apellidos?><br>
+		email: <?=$usuario->email?><br><br>
 	<?php endif; ?>
 
     <h3>Dirección de envío</h3>
